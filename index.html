@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ふるさと納税サイト診断｜きょうパパ</title>
+<meta name="description" content="4つの質問に答えるだけで、あなたに合うふるさと納税サイトがわかる。上限額の調べ方と、寄付したあとの手続きもまとめて案内。">
+<!-- Google Analytics（年末調整ツールと同じID） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4MTCNYPDV2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4MTCNYPDV2');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#fff3ea;--ink:#4a3a33;--sub:#8a7168;--co:#f2795a;--cod:#c8553a;--pe:#ffe4d6;--mi:#d6f0e4;--mid:#23563f;--line:#f3d3c4;--w:#fff;--gold:#b8860b;--goldbg:#fff6d8}
+*{box-sizing:border-box;min-width:0}
+html{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Hiragino Sans",sans-serif;height:100%;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+#scroll{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;position:relative}
+.wrap{max-width:560px;margin:0 auto;padding:0 14px}
+header{flex:none;background:var(--co);color:#fff}
+.hd{display:flex;align-items:center;gap:12px;padding:10px 14px 8px;max-width:560px;margin:0 auto}
+.av{width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+.hd b{display:block;font-size:16px;font-weight:800;line-height:1.3}
+.hd small{font-size:12px;opacity:.92}
+.pg{height:5px;background:rgba(255,255,255,.35)}
+.pg i{display:block;height:100%;width:0;background:#fff;transition:width .35s}
+.prn{font-size:12px;color:var(--sub);text-align:center;padding:8px 0 0}
+.intro{padding:12px 0 4px;text-align:center}
+.intro h1{font-size:clamp(22px,6vw,28px);line-height:1.35;margin:0 0 4px;font-weight:800;text-wrap:balance}
+.intro p{margin:0;font-size:14px;color:var(--sub)}
+#chat{display:flex;flex-direction:column;gap:10px;padding:16px 0 20px}
+.bot,.me{max-width:84%;padding:12px 15px;font-size:16px;line-height:1.6;animation:pop .25s ease-out}
+.bot{align-self:flex-start;background:var(--w);border-radius:4px 20px 20px 20px;box-shadow:0 6px 16px -12px rgba(200,85,58,.6)}
+.bot.now{font-weight:700;font-size:17px;box-shadow:0 0 0 2px var(--co),0 10px 24px -14px rgba(200,85,58,.7)}
+.bot small{display:block;font-weight:500;font-size:13px;color:var(--sub);margin-top:4px}
+.bot.tip{background:var(--mi);color:var(--mid);font-weight:700;font-size:15px}
+.me{align-self:flex-end;background:var(--co);color:#fff;font-weight:700;border-radius:20px 4px 20px 20px}
+.row{display:flex;gap:8px;align-items:flex-end}
+.mini{width:30px;height:30px;border-radius:50%;background:var(--pe);display:flex;align-items:center;justify-content:center;flex:none}
+.simbtn{display:block;margin-top:10px;text-align:center;background:var(--pe);color:var(--cod);border:2px solid var(--co);border-radius:22px;padding:9px 12px;font-size:15px;font-weight:800;text-decoration:none}
+#bar{flex:none;background:var(--w);border-top:1.5px solid var(--line);padding:8px 14px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -8px 20px -16px rgba(200,85,58,.6)}
+#bar .in{max-width:560px;margin:0 auto}
+.bl{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--sub);margin-bottom:4px}
+.ops{display:grid;gap:8px}
+.ops.two{grid-template-columns:1fr 1fr}
+button{font:inherit;cursor:pointer}
+.op{min-height:48px;border:2px solid var(--co);background:#fff;color:var(--cod);border-radius:28px;font-size:16px;font-weight:700;padding:8px 14px}
+.op:focus-visible,.lnk:focus-visible,a:focus-visible{outline:3px solid var(--cod);outline-offset:2px}
+.lnk{background:none;border:0;color:var(--sub);font-size:13px;font-weight:700;min-height:36px;padding:0 4px}
+.lnk[disabled]{opacity:.35;cursor:default}
+.card{background:var(--w);border-radius:24px;padding:18px;margin:12px 0;box-shadow:0 14px 34px -22px rgba(200,85,58,.55)}
+.card h2{margin:0 0 6px;font-size:18px;line-height:1.4;font-weight:800}
+.card .s{margin:0 0 8px;font-size:14px;color:var(--sub)}
+.lbl{display:inline-block;background:var(--co);color:#fff;border-radius:12px;font-size:12px;font-weight:800;padding:2px 10px;margin-bottom:8px}
+.lbl.sub{background:var(--pe);color:var(--cod)}
+.pr{display:inline-block;border:1.5px solid var(--sub);color:var(--sub);border-radius:6px;font-size:11px;font-weight:800;padding:0 5px;margin-left:6px;vertical-align:middle}
+.site{font-size:22px;font-weight:800;line-height:1.3}
+.why{margin:8px 0 0;font-size:15px;font-weight:700;color:var(--cod)}
+ul.pt{margin:10px 0 0;padding:0;list-style:none}
+ul.pt li{position:relative;padding-left:22px;margin:4px 0;font-size:15px}
+ul.pt li::before{content:"◎";position:absolute;left:0;color:var(--co);font-weight:800}
+.go{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:28px;background:var(--co);color:#fff;font-weight:800;text-decoration:none;font-size:16px;margin-top:14px;text-align:center;padding:0 14px}
+.mini2{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-top:1.5px dashed var(--line)}
+.mini2 b{font-size:16px}
+.mini2 p{margin:2px 0 0;font-size:13px;color:var(--sub)}
+.mini2 a{flex:none;border:2px solid var(--co);color:var(--cod);border-radius:20px;padding:6px 12px;font-size:14px;font-weight:800;text-decoration:none;white-space:nowrap}
+.gold{background:var(--goldbg)}
+.gold .lbl{background:var(--gold)}
+.warn{margin-top:10px;background:#fff;border-radius:14px;padding:10px 12px;font-size:13px;color:var(--ink)}
+ol.st{margin:8px 0 0;padding-left:22px}
+ol.st li{margin:6px 0;font-size:15px}
+.hl{background:var(--mi);color:var(--mid);border-radius:14px;padding:10px 12px;font-size:14px;font-weight:700;margin-top:10px}
+.line{display:flex;align-items:center;justify-content:center;min-height:54px;border-radius:28px;background:#06c755;color:#fff;font-weight:800;text-decoration:none;font-size:17px;margin-top:12px}
+.sublink{display:block;text-align:center;margin-top:10px;color:var(--cod);font-weight:700;font-size:14px}
+.note{font-size:12px;color:var(--sub);line-height:1.75;padding:0 4px 30px}
+.note li{margin-bottom:4px}
+.redo{display:block;margin:6px auto 0;min-height:44px;border:2px solid var(--line);background:#fff;color:var(--ink);border-radius:24px;padding:0 20px;font-weight:700}
+.hide{display:none!important}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.bot,.me{animation:none}.pg i{transition:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="hd">
+<div class="av"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f2795a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+<div><b>きょうパパのふるさと納税サイト診断</b><small>2026年分・子育て世帯向け</small></div>
+</div>
+<div class="pg"><i id="pg"></i></div>
+</header>
+
+<div id="scroll"><main class="wrap" id="main">
+<p class="prn">※このページはプロモーション（広告）を含みます</p>
+<div class="intro" id="intro">
+<h1>あなたに合うサイト、いっしょに探そう</h1>
+<p>4つの質問に答えるだけ。約1分で終わります</p>
+</div>
+<div id="chat" aria-live="polite"></div>
+<div id="result" class="hide"></div>
+
+<div id="end" class="hide">
+<button class="redo" id="redo">最初から答え直す</button>
+<ul class="note">
+<li>この診断は、ふるさと納税サイト選びの一般的な目安です。寄付先や返礼品の内容は、各サイトで最新の情報を確認してください。</li>
+<li>寄付できる上限は、年収・家族構成・住宅ローン控除やiDeCoなどで変わります。シミュレーターの金額も目安です。</li>
+<li>2025年10月から、ふるさと納税サイト独自のポイント付与はなくなりました。カード払いなどでたまるポイントは、各カード会社の条件によります。</li>
+<li>このページには、紹介報酬が発生するリンク（【PR】の表示があるもの）が含まれます。</li>
+<li>入力した内容はどこにも送信・保存されません。</li>
+<li>運営：きょうパパ｜家計管理ママの為の子育てFP（石川の独立系FP）</li>
+</ul>
+</div>
+</main></div>
+
+<div id="bar">
+<div class="in">
+<div class="bl"><span id="cnt"></span><button class="lnk" id="back">← ひとつ戻る</button></div>
+<div class="ops" id="ops"></div>
+</div>
+</div>
+
+<script>
+{
+/* ===== リンク（ここを差し替えるだけでOK） ===== */
+const L={
+  prem:'https://26p.jp/?mopob=58461950',                     // ふるさとプレミアム【PR】
+  sim:'https://www.furusato-tax.jp/about/simulation',         // 上限シミュレーター（ふるさとチョイス・会員登録不要）
+  rakuten:'https://event.rakuten.co.jp/furusato/',            // 楽天ふるさと納税（紹介リンクができたら差し替え）
+  amazon:'https://www.amazon.co.jp/fmc/furusato',             // Amazonふるさと納税
+  satofull:'https://www.satofull.jp/',                        // さとふる（紹介リンクができたら差し替え）
+  furunavi:'https://furunavi.jp/',                            // ふるなび（紹介リンクができたら差し替え）
+  choice:'https://www.furusato-tax.jp/',                      // ふるさとチョイス（紹介リンクができたら差し替え）
+  au:'https://furusato.wowma.jp/',                            // au PAY ふるさと納税（URLは公開前に要確認・紹介リンクができたら差し替え）
+  line:'https://lin.ee/QfqkvSd',                              // 公式LINE（このツール専用URLを作ったら差し替え）
+  nencho:'https://kyopapa.github.io/nencho/'                  // 年末調整チェック
+};
+/* 紹介報酬が出るサイトは pr:true にすると【PR】が表示されます */
+const S={
+  prem:{n:'ふるさとプレミアム',u:L.prem,pr:true,p:['家電・電化製品が豊富','自治体の数は少なめでも、人気どころは押さえてある','純金の返礼品もある']},
+  rakuten:{n:'楽天ふるさと納税',u:L.rakuten,pr:false,p:['楽天カード払いで、カードのポイントがたまる','楽天の会員情報・お届け先をそのまま使える']},
+  amazon:{n:'Amazonふるさと納税',u:L.amazon,pr:false,p:['最短翌日に届く返礼品がある','いつものAmazonアカウントで申し込める']},
+  satofull:{n:'さとふる',u:L.satofull,pr:false,p:['早ければ1〜2週間で届く返礼品も','PayPayで支払える','マイページで発送予定や配送状況が見られる']},
+  furunavi:{n:'ふるなび',u:L.furunavi,pr:false,p:['決済サービス「ふるなびマネー」のキャンペーンがある','内容は時期で変わるので確認を']},
+  choice:{n:'ふるさとチョイス',u:L.choice,pr:false,p:['d払いで支払え、ドコモもおすすめしているサイト','老舗の大手サイトで、自治体の情報や寄付の使い道から選びやすい']},
+  au:{n:'au PAY ふるさと納税',u:L.au,pr:false,p:['auかんたん決済で、スマホ代とまとめて払える','Pontaポイントが使える']}
+};
+
+const $=id=>document.getElementById(id);
+const SC=$('scroll');
+const toBottom=()=>{const f=()=>{SC.scrollTop=SC.scrollHeight;};f();setTimeout(f,60);setTimeout(f,300);};
+const ev=(n,p)=>{try{if(window.gtag)gtag('event',n,p||{});}catch(e){}};
+const prTag=s=>s.pr?'<span class="pr">PR</span>':'';
+const rel=s=>s.pr?'sponsored noopener':'noopener';
+let started=false,completed=false;
+
+const Q=[
+{id:'exp',t:'ふるさと納税、したことはありますか？',type:'one',o:[['first','はじめて'],['done','したことがある']]},
+{id:'lim',t:'あなたの上限（自己負担2,000円で寄付できる金額）の目安は？',s:'わからない方は、下のボタンで調べてからでも大丈夫です。',sim:true,type:'one',o:[['u5','〜5万円'],['u10','5〜10万円'],['u50','10〜50万円'],['o50','50万円以上'],['unk','まだわからない']]},
+{id:'want',t:'いちばん大事にしたいことは？',type:'one',o:[['food','お米・食べもの・日用品'],['fast','早く届く'],['easy','いつものサイトで手軽に'],['kaden','家電がほしい'],['keep','形に残るもの（純金など）']]},
+{id:'use',t:'ふだんよく使うポイント・支払いは？',s:'いちばんよく使うものを1つ選んでね',type:'one',o:[['rakuten','楽天（楽天カード・楽天ポイント）'],['amazon','Amazon'],['au','au PAY・Pontaポイント'],['d','d払い・dポイント'],['paypay','PayPay'],['none','特にない']]}
+];
+let a={},hist=[];
+const cur=()=>Q.find(q=>!hist.includes(q.id));
+const label=q=>q.o.find(x=>x[0]===a[q.id])[1];
+const avatar='<div class="mini"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f2795a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>';
+const bot=(t,s,c,extra)=>`<div class="row">${avatar}<div class="bot ${c||''}">${t}${s?`<small>${s}</small>`:''}${extra||''}</div></div>`;
+const simBtn=`<a class="simbtn" href="${L.sim}" target="_blank" rel="noopener" data-ev="sim">上限を調べる（ふるさとチョイス・登録不要）</a>`;
+function react(id){
+  const v=a[id];
+  if(id==='exp'&&v==='first')return 'はじめてでも大丈夫！最後に、寄付したあとの手続きもまとめて案内しますね';
+  if(id==='lim'&&v==='unk')return 'OKです。結果の画面にも、上限を調べるボタンを出しておきますね';
+  if(id==='want'&&v==='keep'&&a.lim==='o50')return '上限が大きい方は、純金の返礼品も選べますよ';
+  return '';
+}
+function draw(){
+  const q=cur();
+  let h=bot('こんにちは、きょうパパです！<br>4つの質問で、あなたに合うふるさと納税サイトを探しますね。','','tip');
+  hist.forEach(id=>{const qq=Q.find(x=>x.id===id);h+=bot(qq.t,qq.s)+`<div class="me">${label(qq)}</div>`;const r=react(id);if(r)h+=bot(r,'','tip');});
+  if(q){
+    h+=bot(q.t,q.s,'now',q.sim?simBtn:'');
+    $('ops').innerHTML=q.o.map(([k,l])=>`<button class="op" data-k="${k}">${l}</button>`).join('');
+    $('cnt').textContent=`質問 ${hist.length+1} / ${Q.length}`;
+    $('back').disabled=!hist.length;
+    $('pg').style.width=(hist.length/Q.length*100)+'%';
+    $('bar').classList.remove('hide');
+    ['result','end'].forEach(id=>$(id).classList.add('hide'));
+    $('intro').classList.remove('hide');$('chat').classList.remove('hide');
+  }else{
+    $('pg').style.width='100%';$('bar').classList.add('hide');
+    result();
+  }
+  $('chat').innerHTML=h;
+  if(q)toBottom();
+}
+$('ops').addEventListener('click',e=>{
+  const b=e.target.closest('.op');if(!b)return;
+  const q=cur();
+  if(!started){started=true;ev('quiz_start');}
+  a[q.id]=b.dataset.k;hist.push(q.id);draw();
+});
+$('back').addEventListener('click',()=>{const id=hist.pop();if(!id)return;delete a[id];draw();});
+$('redo').addEventListener('click',()=>{a={};hist=[];completed=false;draw();SC.scrollTo({top:0,behavior:'smooth'});});
+
+/* ===== 診断ロジック ===== */
+/* ふだん使う支払い → 相性のいいサイト */
+const FAV={rakuten:'rakuten',amazon:'amazon',au:'au',d:'choice',paypay:'satofull',none:'prem'};
+const FAVWHY={
+  rakuten:'楽天カード払いでカードのポイントがたまり、いつもの会員情報のまま申し込めます。',
+  amazon:'いつものAmazonアカウントで申し込めて、すぐ届く返礼品もあります。',
+  au:'auかんたん決済でスマホ代とまとめて払えて、Pontaポイントも使えます。',
+  choice:'d払いで支払えます。ドコモもd払いでのふるさと納税におすすめしているサイトです。',
+  satofull:'PayPayで支払えて、早ければ1〜2週間で届く返礼品もあります。',
+  prem:'人気の自治体の返礼品がそろっていて、はじめてでも選びやすいです。'
+};
+const uniq=(arr,ex)=>[...new Set(arr)].filter(k=>k!==ex).slice(0,2);
+function pick(){
+  const w=a.want,big=a.lim==='o50',fav=FAV[a.use]||'prem';
+  let main,others,why,gold=false;
+  if(w==='kaden'){
+    main='prem';why='家電・電化製品の返礼品が豊富なので、探しやすいです。';
+    others=uniq([fav,'furunavi','rakuten'],main);
+  }else if(w==='keep'){
+    main='prem';gold=big;
+    why=big?'純金の返礼品があり、上限が大きい方の「形に残るもの」選びに向いています。':'家電など、長く使えるものを探しやすいです。';
+    others=uniq([fav,'furunavi','rakuten'],main);
+  }else if(w==='fast'){
+    main=fav==='amazon'?'amazon':'satofull';
+    why=main==='amazon'?'最短翌日に届く返礼品があり、いつものアカウントですぐ申し込めます。':'早ければ1〜2週間で届く返礼品があり、配送状況も確認できます。';
+    others=uniq([main==='amazon'?'satofull':'amazon','prem'],main);
+  }else{ /* food・easy */
+    main=fav;why=FAVWHY[main];
+    others=uniq(main==='prem'?['rakuten','satofull']:['prem','choice','satofull'],main);
+  }
+  return {main,others,why,gold};
+}
+function siteMain(k,why){
+  const s=S[k];
+  return `<div class="card"><span class="lbl">あなたにいちばんおすすめ</span>
+  <div class="site">${s.n}${prTag(s)}</div>
+  <p class="why">${why}</p>
+  <ul class="pt">${s.p.map(x=>`<li>${x}</li>`).join('')}</ul>
+  <a class="go" href="${s.u}" target="_blank" rel="${rel(s)}" data-ev="site" data-site="${k}" data-rank="1">${s.n}で返礼品を見る</a></div>`;
+}
+function siteOthers(ks){
+  return `<div class="card"><span class="lbl sub">ほかの候補</span>${ks.map((k,i)=>{const s=S[k];return `<div class="mini2"><div><b>${s.n}${prTag(s)}</b><p>${s.p[0]}</p></div><a href="${s.u}" target="_blank" rel="${rel(s)}" data-ev="site" data-site="${k}" data-rank="${i+2}">見てみる</a></div>`;}).join('')}</div>`;
+}
+function result(){
+  const r=pick();
+  if(!completed){completed=true;ev('quiz_complete',{main:r.main,want:a.want,lim:a.lim});}
+  let h='';
+  h+=bot('おつかれさまでした！あなたに合うサイトはこちらです。','','tip');
+  h+=siteMain(r.main,r.why);
+  if(r.gold){
+    h+=`<div class="card gold"><span class="lbl">純金の返礼品について</span>
+    <p class="s" style="color:var(--ink);font-size:15px">ふるさとプレミアムは、純金の返礼品も扱っています。ただ、純金は寄付額が数十万〜数百万円になるものが多いので、上限の範囲で選べるか確認してから申し込んでくださいね。</p>
+    <div class="warn">・金の値段は、上がることも下がることもあります。<br>・返礼品は「一時所得」になります。ほかの一時所得と合わせて年50万円を超えると、税金がかかる場合があります。</div>
+    <a class="go" href="${L.prem}" target="_blank" rel="sponsored noopener" data-ev="site" data-site="prem_gold" data-rank="1">ふるさとプレミアムで純金の返礼品を見る</a></div>`;
+  }
+  h+=siteOthers(r.others);
+  /* 上限 */
+  h+=`<div class="card"><h2>寄付する金額の決め方</h2>
+  ${a.lim==='unk'?`<p class="s">まずは上限を調べましょう。「かんたんシミュレーション」なら、家族構成と年収を選ぶだけで目安が出ます。</p><a class="go" href="${L.sim}" target="_blank" rel="noopener" data-ev="sim">上限を調べる（ふるさとチョイス・登録不要）</a>`:`<p class="s">上限は目安です。年収が見込みより下がると、上限も下がります。</p>`}
+  <div class="hl">寄付は、上限の7〜8割までにしておくと安心です</div></div>`;
+  /* 手続き */
+  h+=`<div class="card"><h2>寄付したあと、忘れずに</h2>
+  <p class="s">ふるさと納税は、年末調整では申告できません。どちらかの手続きが必要です。</p>
+  <ol class="st">
+  <li><b>ワンストップ特例</b>：確定申告をしない会社員で、寄付先が5自治体以内の人。寄付先ごとに申請書を出します（翌年1月10日必着）。</li>
+  <li><b>確定申告</b>：寄付先が6自治体以上の人や、医療費控除などで確定申告をする人。この場合、ワンストップ特例は使えないので、ふるさと納税も確定申告に入れます。</li>
+  </ol>
+  <div class="hl">今年の分は、12月31日までの寄付が対象です</div></div>`;
+  /* LINE */
+  h+=`<div class="card"><h2>家計の固定費も、いっしょに見直しませんか？</h2>
+  <p class="s">子育て世帯専門のFPが、保険や携帯代など払いすぎの固定費をチェックします。</p>
+  <p style="margin:8px 0 0;font-size:15px;font-weight:700;color:var(--cod)">LINE登録で「固定費を月3万円見直すコツ」をプレゼント</p>
+  <a class="line" href="${L.line}" target="_blank" rel="noopener" data-ev="line">LINEで友だち追加する</a>
+  <a class="sublink" href="${L.nencho}" target="_blank" rel="noopener" data-ev="nencho">年末調整の書き方チェックはこちら →</a>
+  <p class="s" style="text-align:center;margin:8px 0 0">きょうパパ｜家計管理ママの為の子育てFP</p></div>`;
+  $('result').innerHTML=h;
+  ['result','end'].forEach(id=>$(id).classList.remove('hide'));
+  $('intro').classList.add('hide');$('chat').classList.add('hide');
+  SC.scrollTop=0;setTimeout(()=>{SC.scrollTop=0;},60);
+}
+/* クリック計測 */
+document.addEventListener('click',e=>{
+  const l=e.target.closest('a[data-ev]');if(!l)return;
+  const t=l.dataset.ev;
+  if(t==='site')ev('site_click',{site:l.dataset.site,rank:l.dataset.rank});
+  else if(t==='sim')ev('sim_click');
+  else if(t==='line')ev('line_click',{place:'furusato'});
+  else if(t==='nencho')ev('nencho_click');
+});
+draw();
+}
+</script>
+</body>
+</html>
