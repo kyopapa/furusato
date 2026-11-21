@@ -122,26 +122,28 @@ ol.st li{margin:6px 0;font-size:15px}
 {
 /* ===== リンク（ここを差し替えるだけでOK） ===== */
 const L={
-  prem:'https://26p.jp/?mopob=58461950',                     // ふるさとプレミアム【PR】
+  prem:'https://af.mopo.jp/te/click?m=52833&a=206734',        // ふるさとプレミアム【PR】（FPC）
   sim:'https://www.furusato-tax.jp/about/simulation',         // 上限シミュレーター（ふるさとチョイス・会員登録不要）
-  rakuten:'https://event.rakuten.co.jp/furusato/',            // 楽天ふるさと納税（紹介リンクができたら差し替え）
-  amazon:'https://www.amazon.co.jp/fmc/furusato',             // Amazonふるさと納税
+  rakuten:'https://a.r10.to/hkehzr',                          // 楽天ふるさと納税【PR】（楽天公式）
+  amazon:'https://amzn.to/4A5aV0c',                           // Amazonふるさと納税【PR】（Amazon公式）
+  docomo:'https://dshopping-furusato.docomo.ne.jp/',          // dショッピング ふるさと納税（ドコモ公式。アフィリエイト申請中。承認後に紹介リンクへ差し替え、pr:true にする）
   satofull:'https://www.satofull.jp/',                        // さとふる（紹介リンクができたら差し替え）
   furunavi:'https://furunavi.jp/',                            // ふるなび（紹介リンクができたら差し替え）
   choice:'https://www.furusato-tax.jp/',                      // ふるさとチョイス（紹介リンクができたら差し替え）
-  au:'https://furusato.wowma.jp/',                            // au PAY ふるさと納税（URLは公開前に要確認・紹介リンクができたら差し替え）
+  au:'https://px.a8.net/svt/ejp?a8mat=4BGQGY+6VOD7E+54OC+5YJRM', // au PAY ふるさと納税【PR】（A8.net）
   line:'https://lin.ee/QfqkvSd',                              // 公式LINE（このツール専用URLを作ったら差し替え）
   nencho:'https://kyopapa.github.io/nencho/'                  // 年末調整チェック
 };
 /* 紹介報酬が出るサイトは pr:true にすると【PR】が表示されます */
 const S={
   prem:{n:'ふるさとプレミアム',u:L.prem,pr:true,p:['家電・電化製品が豊富','自治体の数は少なめでも、人気どころは押さえてある','純金の返礼品もある']},
-  rakuten:{n:'楽天ふるさと納税',u:L.rakuten,pr:false,p:['楽天カード払いで、カードのポイントがたまる','楽天の会員情報・お届け先をそのまま使える']},
-  amazon:{n:'Amazonふるさと納税',u:L.amazon,pr:false,p:['最短翌日に届く返礼品がある','いつものAmazonアカウントで申し込める']},
+  rakuten:{n:'楽天ふるさと納税',u:L.rakuten,pr:true,p:['楽天カード払いで、カードのポイントがたまる','楽天の会員情報・お届け先をそのまま使える']},
+  amazon:{n:'Amazonふるさと納税',u:L.amazon,pr:true,p:['最短翌日に届く返礼品がある','いつものAmazonアカウントで申し込める']},
+  docomo:{n:'dショッピング ふるさと納税',u:L.docomo,pr:false,p:['ドコモの公式サイト','d払いで支払える']},
   satofull:{n:'さとふる',u:L.satofull,pr:false,p:['早ければ1〜2週間で届く返礼品も','PayPayで支払える','マイページで発送予定や配送状況が見られる']},
   furunavi:{n:'ふるなび',u:L.furunavi,pr:false,p:['決済サービス「ふるなびマネー」のキャンペーンがある','内容は時期で変わるので確認を']},
-  choice:{n:'ふるさとチョイス',u:L.choice,pr:false,p:['d払いで支払え、ドコモもおすすめしているサイト','老舗の大手サイトで、自治体の情報や寄付の使い道から選びやすい']},
-  au:{n:'au PAY ふるさと納税',u:L.au,pr:false,p:['auかんたん決済で、スマホ代とまとめて払える','Pontaポイントが使える']}
+  choice:{n:'ふるさとチョイス',u:L.choice,pr:false,p:['老舗の大手サイトで、自治体の情報や寄付の使い道から選びやすい']},
+  au:{n:'au PAY ふるさと納税',u:L.au,pr:true,p:['auかんたん決済で、スマホ代とまとめて払える','Pontaポイントが使える']}
 };
 
 const $=id=>document.getElementById(id);
@@ -202,12 +204,12 @@ $('redo').addEventListener('click',()=>{a={};hist=[];completed=false;draw();SC.s
 
 /* ===== 診断ロジック ===== */
 /* ふだん使う支払い → 相性のいいサイト */
-const FAV={rakuten:'rakuten',amazon:'amazon',au:'au',d:'choice',paypay:'satofull',none:'prem'};
+const FAV={rakuten:'rakuten',amazon:'amazon',au:'au',d:'docomo',paypay:'satofull',none:'prem'};
 const FAVWHY={
   rakuten:'楽天カード払いでカードのポイントがたまり、いつもの会員情報のまま申し込めます。',
   amazon:'いつものAmazonアカウントで申し込めて、すぐ届く返礼品もあります。',
   au:'auかんたん決済でスマホ代とまとめて払えて、Pontaポイントも使えます。',
-  choice:'d払いで支払えます。ドコモもd払いでのふるさと納税におすすめしているサイトです。',
+  docomo:'ドコモの公式サイトで、d払いで支払えます。',
   satofull:'PayPayで支払えて、早ければ1〜2週間で届く返礼品もあります。',
   prem:'人気の自治体の返礼品がそろっていて、はじめてでも選びやすいです。'
 };
